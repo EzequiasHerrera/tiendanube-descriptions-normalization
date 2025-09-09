@@ -1,0 +1,26 @@
+{
+  "name": "tiendanube-descriptions-normalization",
+  "version": "1.0.0",
+  "description": "Application for TiendaNube that changes massively product descriptions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EzequiasHerrera/tiendanube-descriptions-normalization.git"
+  },
+  "keywords": [
+    "tiendanube"
+  ],
+  "author": "Ezequias Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EzequiasHerrera/tiendanube-descriptions-normalization/issues"
+  },
+  "homepage": "https://github.com/EzequiasHerrera/tiendanube-descriptions-normalization#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2"
+  }
+}
