@@ -1,5 +1,5 @@
 export const sendToAI = async (prompt) => {
-  fetch(
+  return fetch(
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
     {
       method: "POST",
@@ -21,5 +21,4 @@ export const sendToAI = async (prompt) => {
     }
   )
     .then((data) => data.json())
-    .then((data) => data.candidates?.[0]?.content?.parts?.[0]?.text);
 };
