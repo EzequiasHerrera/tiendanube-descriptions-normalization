@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/EzequiasHerrera/tiendanube-descriptions-normalization#readme",
   "dependencies": {
-    "dotenv": "^17.2.2"
+    "dotenv": "^17.2.2",
+    "form-data": "^4.0.4",
+    "googleapis": "^159.0.0",
+    "redis": "^5.8.2",
+    "sharp": "^0.34.3",
+    "xlsx": "^0.18.5"
   }
 }

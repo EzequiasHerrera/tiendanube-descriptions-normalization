@@ -1,62 +1,17 @@
-import { sendToAI } from "./AIservice.js";
+import { access } from "fs";
+import { sendToAI } from "../integrations/AIservice.js";
+import { driveFindImageBySKU, getDriveFileName } from "../integrations/driveService.js";
 import readline from "readline";
 import util from "util";
+import sharp from "sharp";
+import { createReadStream, existsSync } from 'fs';
+import fs from "fs/promises";
+import path from "path";
+import FormData from 'form-data';
+import { getRawProductsFromExcel } from "./excelService.js"
 
-const esperarConfirmacion = () => {
-    return new Promise((resolve) => {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        });
-
-        rl.question("🛑 Presioná Enter para continuar con la subida...\n", () => {
-            rl.close();
-            resolve();
-        });
-    });
-};
-
-//ORDENADO DESDE LO MÁS GENERAL Y AMPLIO HASTA LO MÁS INDIVIDUAL Y SINGULAR
-//🔁 Recorre todos los productos de una tienda
-const doInEveryProduct = async (action, token, store, perPage = 200) => {
-    let page = 1;
-    let totalProductos = 0; //Para llevar la cuenta total de productos vistos
-
-    while (true) {
-        //Obtiene los productos en la pagina actual
-        const products = await fetchAllProductsInPage(page, token, store, perPage);
-
-        //Si no hay productos se corta el proceso
-        if (!products || products.length === 0) break;
-
-        // Subimos todos los productos de esta página en paralelo
-        await Promise.all(products.map(action));
-
-        totalProductos += products.length;
-        page++;
-    }
-};
-
-// 📦 Obtiene productos en una pagina específica
-const fetchAllProductsInPage = async (page = 1, token, store, perpage) => {
-    const url = `https://api.tiendanube.com/v1/${store}/products?per_page=${perpage}&page=${page}`;
-
-    const res = await fetch(url, {
-        method: "GET",
-        headers: {
-            Authentication: `bearer ${token}`,
-            "User-Agent": "Descriptions Normalization (ezequiasherrera99@gmail.com)",
-            "Content-Type": "application/json",
-        },
-    });
-
-    if (!res.ok) {
-        console.warn(`⚠️ Error en página ${page}: ${res.status} ${res.statusText}`);
-        return [];
-    }
-
-    return res.json();
-};
+import dotenv from "dotenv";
+dotenv.config();
 
 // 🔍 Revisa un producto por SKU
 const isThisProductBySKU = (product, skuBuscado) => {
@@ -79,72 +34,86 @@ const findProductBySKU = async (skuBuscado, token, store) => {
     return productoEncontrado;
 };
 
-const cleanDescription = (html) => {
-    return html.replace(/<!-- \[if gte mso 9\]><xml>[\s\S]*-->/, '');
-};
+const formatDescriptionWithAI = async (descriptionRaw) => {
+    const prompt = `Necesito la info del producto organizada en items <li> para volcar en mi web y que quede ordenada y tipo texto plano html donde cada <li> está dentro del <ul> padre. Unicamente mandame lo que necesito asi copio y pego, no interactues conmigo.Colocale de encabezado Caracteristicas Principales dentro de la etiqueta <strong> y este debe estar encima y fuera de la etiqueta <ul>. Nunca menciones el nombre del producto: ${descriptionRaw}`;
 
-//FUNCION PARA CADA PRODUCTO
-const updateDescription = async (product, skuBuscado, token, store) => {
-    if (isThisProductBySKU(product, skuBuscado)) {
-        const descripcionLimpia = cleanDescription(product.description?.es);
+    try {
+        const result = await sendToAI(prompt);
+        const newDescription = result.candidates?.[0]?.content?.parts?.[0]?.text;
 
-        const prompt = `Necesito la info del producto ${product.name?.es} organizada en items <li> para volcar en mi web y que quede ordenada y tipo texto plano html <ul>. Ignora emojis y todas las etiquetas HTML que no tengan relación con el producto. Unicamente mandame lo que necesito asi copio y pego, no interactues conmigo. Si la info que te copio tiene un encabezado del titulo del producto, reemplaza ese encabezado por la palabra Caracteristicas Principales dentro de la etiqueta <strong> y este debe estar encima y fuera de la etiqueta <ul>. Nunca menciones el nombre del producto: ${descripcionLimpia}`;
+        console.log("\n🧠 Descripcion generada:\n", newDescription);
 
-        console.log(prompt);
-
-        const tokenObjetivo = process.env.TOKEN_KT_GASTRO;
-        const storeObjetivo = process.env.STORE_ID_KTGASTRO;
-
-        try {
-            const result = await sendToAI(prompt);
-            const newDescription = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-            console.log("\n🧠 Texto generado:\n", newDescription);
-
-            const productoDestino = await findProductBySKU(skuBuscado, tokenObjetivo, storeObjetivo);
-
-            if (!productoDestino) {
-                console.warn("❌ No se encontró el producto en la tienda destino");
-                return;
-            }
-
-            const url = `https://api.tiendanube.com/v1/${storeObjetivo}/products/${productoDestino.id}`;
-            const res = await fetch(url, {
-                method: "PUT",
-                headers: {
-                    Authentication: `bearer ${tokenObjetivo}`,
-                    "User-Agent": "Descriptions normalization (ezequiasherrera99@gmail.com)",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ description: newDescription }),
-            });
-
-            if (res.ok) {
-                console.log(`✅ Descripción actualizada para producto ${productoDestino.id}`);
-            } else {
-                console.warn(`❌ Error al actualizar producto ${productoDestino.id}: ${res.statusText}`);
-            }
-        } catch (error) {
-            console.error("❌ Error al generar o subir la descripción:", error);
-        }
+        return newDescription;
+    } catch (error) {
+        console.error("❌ Error al generar o subir la descripción:", error);
     }
-};
+}
 
-//FUNCION PRINCIPAL DE DONDE COMIENZA
-export const updateDescriptionWithAI = async (shop, skuBuscado) => {
-    let token, store;
+const uploadProducts = async (product) => {
+    const access = getTokenAndStore("KTGASTRO");
 
-    if (shop === "KTGASTRO") {
-        token = process.env.TOKEN_KT_GASTRO;
-        store = process.env.STORE_ID_KTGASTRO;
+    const body = {
+        name: { es: product.nombre },
+        description: { es: product.descripcion || "" },
+        published: false,
+        tags: product.tags || "",
+        free_shipping: product.envioSinCargo,
+        requires_shipping: product.productoFisico,
+        brand: product.marca || "",
+        variants: [
+            {
+                price: "100.00" || "0.00",
+                stock: product.stock || 0,
+                sku: product.sku || "",
+                weight: product.peso || "0.00",
+                width: product.ancho || "0.00",
+                height: product.alto || "0.00",
+                depth: product.profundidad || "0.00",
+                cost: "100.00" || "0.00",
+                stock_management: true,
+            }
+        ],
+        images: product.imagenes?.slice(0, 9).map((url, index) => ({
+            src: url,
+            position: index + 1
+        })) || [],
+        categories: product.categorias || []
+    };
+
+    const res = await fetch(`https://api.tiendanube.com/v1/${access.store}/products`, {
+        method: 'POST',
+        headers: {
+            Authentication: `bearer ${access.token}`,
+            "User-Agent": "Excel Uploader (ezequiasherrera99@gmail.com)",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+        console.log(`✅ Producto subido: ${product.nombre}`);
     } else {
-        token = process.env.TOKEN_KT_HOGAR;
-        store = process.env.STORE_ID_KTHOGAR;
+        console.error(`❌ Error al subir ${product.nombre}:`, result);
     }
+};
 
-    await doInEveryProduct(
-        (product) => updateDescription(product, skuBuscado, token, store),
-        token,
-        store
-    );
+const uploadProductsFromExcel = async () => {
+    const rawProducts = await getRawProductsFromExcel();
+
+    for (const product of rawProducts) {
+        console.log(`\n📦 Preparando producto: ${product.nombre}`);
+
+        const descripcionAI = await formatDescriptionWithAI(product.descripcionRaw);
+        const imagenes = await driveFindImageBySKU(product.sku);
+
+        const fullProduct = {
+            ...product,
+            descripcion: descripcionAI,
+            imagenes
+        };
+
+        await uploadProducts(fullProduct);
+    }
 };
