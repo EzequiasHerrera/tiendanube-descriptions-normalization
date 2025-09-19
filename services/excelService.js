@@ -1,13 +1,9 @@
 import * as XLSX from 'xlsx';
 import fs from 'fs';
 import path from 'path';
-import readline from 'readline';
-import { sendToAI } from '../integrations/AIservice.js';
-
-
 
 const getRawProductsFromExcel = async () => {
-    const filePath = path.resolve('./excel/productos.csv');
+    const filePath = path.resolve('./excel/productos2.csv');
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const workbook = XLSX.read(fileContent, { type: 'string' });
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -41,7 +37,7 @@ const getRawProductsFromExcel = async () => {
             productoFisico
         });
     }
-
+    
     return products;
 };
 

@@ -1,16 +1,9 @@
-import { access } from "fs";
 import { sendToAI } from "../integrations/AIservice.js";
 import { driveFindImageBySKU, getDriveFileName } from "../integrations/driveService.js";
-import readline from "readline";
-import util from "util";
-import sharp from "sharp";
-import { createReadStream, existsSync } from 'fs';
-import fs from "fs/promises";
-import path from "path";
-import FormData from 'form-data';
+import getTokenAndStore from "../utils/getTokenAndStore.js";
 import { getRawProductsFromExcel } from "./excelService.js"
-
 import dotenv from "dotenv";
+
 dotenv.config();
 
 // 🔍 Revisa un producto por SKU
@@ -106,14 +99,16 @@ const uploadProductsFromExcel = async () => {
         console.log(`\n📦 Preparando producto: ${product.nombre}`);
 
         const descripcionAI = await formatDescriptionWithAI(product.descripcionRaw);
-        const imagenes = await driveFindImageBySKU(product.sku);
+        const imagenes = await driveFindImageBySKU(product.sku, true) || [];
 
         const fullProduct = {
             ...product,
-            descripcion: descripcionAI,
+            descripcion: descripcionAI || '',
             imagenes
         };
 
         await uploadProducts(fullProduct);
     }
 };
+
+export { uploadProductsFromExcel };

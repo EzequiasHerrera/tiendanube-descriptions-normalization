@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { cropPicturesFromTiendaNube } from "./utils/cropPictures.js";
+import { uploadProductsFromExcel } from "./services/productsService.js"
 
 dotenv.config();
 

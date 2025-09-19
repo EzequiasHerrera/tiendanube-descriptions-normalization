@@ -3,20 +3,26 @@ import { oauth2Client } from './googleAuth.js';
 
 const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
-export async function driveFindImageBySKU(sku) {
-    const res = await drive.files.list({ // si quisiera que traiga el array de fotos que contengan el SKU coloco "and name contains '${sku}'" and name = '${sku}.jpg'
-        q: `'1-R_zY7rBbem5DmHclokxLZF-wYsdvjep' in parents and name = '${sku}.jpg' and mimeType contains 'image/' and trashed = false`,
+export async function driveFindImageBySKU(sku, many = false) {
+    const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
+
+    const res = await drive.files.list({
+        q: `'1-R_zY7rBbem5DmHclokxLZF-wYsdvjep' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
         fields: 'files(id, name)',
         orderBy: 'name'
     });
-    if (res.data.files.length > 0) {
-        const file = res.data.files[0];
-        console.log(`https://drive.google.com/uc?export=view&id=${file.id}`);
-        return `https://drive.google.com/uc?export=view&id=${file.id}`;
+
+    const files = res.data.files;
+
+    if (!files || files.length === 0) return null;
+
+    if (many) {
+        return files.map(file => `https://drive.google.com/uc?export=view&id=${file.id}`);
     }
-    console.log("No existe")
-    return null;
+
+    return `https://drive.google.com/uc?export=view&id=${files[0].id}`;
 }
+
 
 export async function getDriveFileName(fileId) {
     const res = await drive.files.get({
@@ -26,5 +32,3 @@ export async function getDriveFileName(fileId) {
 
     return res.data.name;
 }
-
-driveFindImageBySKU(5000830);
