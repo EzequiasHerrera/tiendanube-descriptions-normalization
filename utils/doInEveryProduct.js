@@ -47,4 +47,4 @@ export const doInEveryProduct = async (action, storeName, perPage = 200) => {
     }
 };
 
-export { fetchAllProductsInPage, doInEveryProduct };
+export { fetchAllProductsInPage };

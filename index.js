@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { uploadProductsFromExcel } from "./services/productsService.js";
 import { doInEveryProduct } from "./utils/doInEveryProduct.js";
+import { adjustMarginPictures } from "./utils/cropPictures.js";
 dotenv.config();
 
 const skuBuscados = [

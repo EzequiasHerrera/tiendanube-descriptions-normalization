@@ -1,4 +1,4 @@
-import { downloadDriveImageBuffer } from "../integrations/driveService.js";
+import { downloadDriveImageBufferById } from "../integrations/driveService.js";
 import waitingConfirmation from "./waitingConfirmation.js";
 
 export const imageToBase64 = async (url) => {
@@ -16,7 +16,7 @@ export const imageToBase64 = async (url) => {
 export const subirImagenesBase64 = async (fileIds = [], token, store, producto) => {
   for (let i = 0; i < fileIds.length; i++) {
     try {
-      const buffer = await downloadDriveImageBuffer(fileIds[i]);
+      const buffer = await downloadDriveImageBufferById(fileIds[i]);
       const base64 = buffer.toString("base64");
 
       const body = {
