@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { uploadProductsFromExcel } from "./services/productsService.js";
+import { doInEveryProduct } from "./utils/doInEveryProduct.js";
 dotenv.config();
 
 const skuBuscados = [

@@ -46,7 +46,7 @@ export async function getURLbySKU(sku, many = false) {
 }
 
 // En downloadDriveImageBuffer.js
-export const downloadDriveImageBuffer = async (fileId) => {
+export const downloadDriveImageBufferById = async (fileId) => {
   const res = await drive.files.get(
     { fileId, alt: "media" },
     { responseType: "arraybuffer" }
@@ -54,6 +54,27 @@ export const downloadDriveImageBuffer = async (fileId) => {
   return Buffer.from(res.data);
 };
 
+export const downloadDriveImageBufferBySKU = async (sku) => {
+  try {
+    const fileId = await driveFindImageBySKU(sku, false);
+    if (!fileId) {
+      console.warn(`❌ No se encontró imagen para SKU: ${sku}`);
+      return null;
+    }
+
+    const res = await drive.files.get(
+      { fileId, alt: "media" },
+      { responseType: "arraybuffer" }
+    );
+
+    return Buffer.from(res.data);
+  } catch (err) {
+    console.error(
+      `❌ Error al descargar imagen por SKU (${sku}): ${err.message}`
+    );
+    return null;
+  }
+};
 
 export async function getDriveFileName(fileId) {
   const res = await drive.files.get({

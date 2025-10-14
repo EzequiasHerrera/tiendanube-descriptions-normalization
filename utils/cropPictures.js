@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { downloadDriveImageBuffer, driveFindImageBySKU } from "../integrations/driveService.js";
+import { downloadDriveImageBuffer, downloadDriveImageBufferBySKU, driveFindImageBySKU } from "../integrations/driveService.js";
 import waitingConfirmation from "./waitingConfirmation.js"
 import { fetchWithRetry } from "./fetchWithRetry.js";
 
@@ -30,7 +30,7 @@ export const adjustMarginPictures = async (product, token, store, mode) => {
 
     // Si no se pudo usar Tienda Nube, buscar en Drive
     // if (!buffer || buffer.length === 0) {
-    const driveArrayBuffer = await downloadDriveImageBuffer(sku);
+    const driveArrayBuffer = await downloadDriveImageBufferBySKU(sku);
     console.log(driveArrayBuffer);
     if (!driveArrayBuffer) {
         console.warn("❌ No se encontró imagen en Drive.");
