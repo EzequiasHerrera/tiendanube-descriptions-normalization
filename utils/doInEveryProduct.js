@@ -23,7 +23,7 @@ const fetchAllProductsInPage = async (page = 1, token, store, perpage) => {
 //ORDENADO DESDE LO MÁS GENERAL Y AMPLIO HASTA LO MÁS INDIVIDUAL Y SINGULAR
 //🔁 Recorre todos los productos de una tienda
 const doInEveryProduct = async (action, storeName, perPage = 200) => {
-    const access = await getTokenAndStore(storeName);
+    const access = getTokenAndStore(storeName);
     let page = 1;
     let totalProductos = 0; //Para llevar la cuenta total de productos vistos
 

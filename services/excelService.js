@@ -28,11 +28,11 @@ const getRawProductsFromExcel = async () => {
 
         const sku = row[10]?.trim() || "";
         const envioSinCargo = row[13]?.trim().toUpperCase() === "SI";
-        const descripcionRaw = row[17]?.trim() || "";
+        const descripcionRaw = row[14]?.trim() || "";
         const marca = row[18]?.trim() || "";
         const productoFisico = row[19]?.trim().toUpperCase() === "SI";
 
-        // console.log(`${nombre} peso: ${peso} alto: ${alto} ancho: ${ancho} profundidad: ${profundidad} sku: ${sku} envio: ${envioSinCargo} marca: ${marca} físico: ${productoFisico}`);
+        // console.log(`${nombre} peso: ${peso} alto: ${alto} ancho: ${ancho} profundidad: ${profundidad} sku: ${sku} envio: ${envioSinCargo} marca: ${marca} físico: ${productoFisico} descripción: ${descripcionRaw}`);
 
         products.push({
             nombre,

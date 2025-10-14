@@ -1,8 +1,7 @@
 import sharp from "sharp";
 import { downloadDriveImageBuffer, driveFindImageBySKU } from "../integrations/driveService.js";
-import { doInEveryProduct } from "./doInEveryProduct.js";
-import getTokenAndStore from "./getTokenAndStore.js";
 import waitingConfirmation from "./waitingConfirmation.js"
+import { fetchWithRetry } from "./fetchWithRetry.js";
 
 export const adjustMarginPictures = async (product, token, store, mode) => {
     const sku = product.variants?.[0]?.sku;
@@ -68,10 +67,10 @@ export const adjustMarginPictures = async (product, token, store, mode) => {
     // Aplicar márgenes y redimensionar
     const finalBuffer = await sharp(trimmedBuffer)
         .extend({
-            top: 50,
-            bottom: 50,
-            left: 50,
-            right: 0,
+            top: 60,
+            bottom: 60,
+            left: 60,
+            right: 60,
             background: { r: 255, g: 255, b: 255, alpha: 1 }
         })
         .resize(1024, 768, {
@@ -83,7 +82,7 @@ export const adjustMarginPictures = async (product, token, store, mode) => {
     const base64Image = finalBuffer.toString('base64');
 
     // 🗑️ Eliminar imagen principal actual
-    const existingImagesRes = await fetchWithRetr(`https://api.tiendanube.com/v1/${store}/products/${productId}/images`, {
+    const existingImagesRes = await fetchWithRetry(`https://api.tiendanube.com/v1/${store}/products/${productId}/images`, {
         headers: {
             "Authentication": `bearer ${token}`,
             "User-Agent": "Drive images to products (ezequiasherrera99@gmail.com)"

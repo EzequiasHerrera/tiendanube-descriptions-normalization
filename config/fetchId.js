@@ -5,9 +5,9 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-const code = process.env.TOKEN_KT_HOGAR;
+const clientId = "21040";
+const clientSecret = "a77d9f10e3d7d0335a44afc8d33032bb4d9cd0e141302a2b";
+const code = "3c84bb85ab4afd6153aa6462bdf46dfbcff4fbd6";
 
 const params = new URLSearchParams();
 params.append('client_id', clientId);
