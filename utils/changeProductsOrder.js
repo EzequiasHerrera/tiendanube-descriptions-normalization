@@ -12,7 +12,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
     await new Promise(resolve => process.stdin.once('data', resolve));
 
     // 📍 Ir a la sección de organización de productos
-    await page.goto('https://kitchentoolsgastronomia.mitiendanube.com/admin/v2/products/organize', {
+    await page.goto('https://kitchentools.mitiendanube.com/admin/v2/products/organize', {
         waitUntil: 'networkidle2'
     });
 

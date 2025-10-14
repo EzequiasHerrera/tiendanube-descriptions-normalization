@@ -1,14 +1,21 @@
 import dotenv from "dotenv";
-import { cropPicturesFromTiendaNube } from "./utils/cropPictures.js";
-import { uploadProductsFromExcel } from "./services/productsService.js"
-
+import { doInEveryProduct } from "./utils/doInEveryProduct.js";
+import { adjustMarginPictures } from "./utils/cropPictures.js";
+import { uploadProductsFromExcel } from "./services/productsService.js";
 dotenv.config();
 
-// const newProduct = {
-//   id: product.id,
-//   name: product.name?.es,
-//   sku: product.variants?.[0]?.sku,
-//   description: product.description?.es,
-// };
+const skuBuscados = [
+    "1107121",
+    "1107122",
+    "1107123",
+    "1107124",
+    "1107125",
+    "1107126",
+    "1107127",
+    "1107128",
+    "1107129",
+];
 
-cropPicturesFromTiendaNube();
+// doInEveryProduct(adjustMarginPictures, "KTGASTRO")
+
+uploadProductsFromExcel("KTGASTRO");

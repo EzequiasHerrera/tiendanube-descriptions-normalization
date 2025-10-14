@@ -1,83 +1,94 @@
-Identificador de URL;Nombre;Categorías;Nombre de propiedad 1;Valor de propiedad 1;Nombre de propiedad 2;Valor de propiedad 2;Nombre de propiedad 3;Valor de propiedad 3;Precio;Precio promocional;Peso (kg);Alto (cm);Ancho (cm);Profundidad (cm);Stock;SKU;Código de barras;Mostrar en tienda;Envío sin cargo;Descripción;Tags;Título para SEO;Descripción para SEO;Marca;Producto Físico;MPN (Número de pieza del fabricante);Sexo;Rango de edad;Costo
-;Rallador 4 Caras Hudson;;;;;;;;;;0,1;5;8;6;;1198320;;;NO;Altura: 23 cm Ancho: 13 cm Material: Acero Inoxidable | Plastico;;;;;SI;;;;
-;Housing + Filtro 3 Micras;;;;;;;;;;0,1;5;8;6;;1500002;;;NO;Altura: 30 cm | Diametro: 12 cm;;;;;SI;;;;
-;Housing + Filtro 5 Micras;;;;;;;;;;0,1;5;8;6;;1500001;;;NO;Altura: 30 cm | Diametro: 12 cm;;;;;SI;;;;
-;Housing + Filtro Ionico;;;;;;;;;;0,1;5;8;6;;1500000;;;NO;Altura: 30 cm | Diametro: 12 cm;;;;;SI;;;;
-;Detergente Lavavajilla;;;;;;;;;;1;5;8;6;;1128611;;;NO;Capacidad: 11 lt;;;;;SI;;;;
-;Copa Postre Noruega 250 Cc;;;;;;;;;;1;5;8;6;;1254724;;;NO;Capacidad: 250 ml Altura: 8 cm Diametro: 9 cm Material: Vidrio;;;;Rigolleau;SI;;;;
-;Jarro Mug Melamina;;;;;;;;;;0,1;5;8;6;;1143969;;;NO;Capacidad: 350 ml Diametro:9 cm Altura: 11 cm Material: Melamina;;;;;SI;;;;
-;Abrillantador Lavavajilla;;;;;;;;;;1;5;8;6;;1128612;;;NO;Capacidad: 5 lt;;;;;SI;;;;
-;Cazuela Melamina N 240 PBT;;;;;;;;;;0,1;5;8;6;;1500240;;;NO;Diametro: 10 cm Altura: 4 cm Material: Melamina;;;;Cocott;SI;;;;
-;Cazuela Melamina N 250 PBT;;;;;;;;;;0,1;5;8;6;;1500250;;;NO;Diametro: 10 cm Altura: 4 cm Material: Melamina;;;;Cocott;SI;;;;
-;Cazuela Melamina N 240 PP;;;;;;;;;;0,1;5;8;6;;1500241;;;NO;Diametro: 10 cm Altura: 4 cm Material: Plastico;;;;;SI;;;;
-;Filtro Cafe Tela 10 cm X12;;;;;;;;;;0,1;5;8;6;;1079200;;;NO;Diametro: 10 cm Material: Tela;;;;;SI;;;;
-;Embudo 12 Cm;;;;;;;;;;0,1;5;8;6;;1165200;;;NO;Diametro: 12 cm Material: Plastico;;;;;SI;;;;
-;Filtro Cafe Tela 12 cm X12;;;;;;;;;;0,1;5;8;6;;1079205;;;NO;Diametro: 12 cm Material: Tela;;;;;SI;;;;
-;Cazuela Melamina N 170 Beige PP;;;;;;;;;;0,1;5;8;6;;1500172;;;NO;Diametro: 13 Altura 8 cm Material: Plastico;;;;Cocott;SI;;;;
-;Cazuela Melamina N 170 Blanca PP;;;;;;;;;;0,1;5;8;6;;1500171;;;NO;Diametro: 13 Altura 8 cm Material: Plastico;;;;;SI;;;;
-;Embudo 16 Cm;;;;;;;;;;0,1;5;8;6;;1165330;;;NO;Diametro: 16 cm Material: Plastico;;;;;SI;;;;
-;Filtro Cafe Tela 18 Cm;;;;;;;;;;0,1;5;8;6;;1079060;;;NO;Diametro: 18 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 20 Cm;;;;;;;;;;0,1;5;8;6;;1079061;;;NO;Diametro: 20 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 22 Cm;;;;;;;;;;0,1;5;8;6;;1079062;;;NO;Diametro: 22 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 24 Cm;;;;;;;;;;0,1;5;8;6;;1079063;;;NO;Diametro: 24 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 26 Cm;;;;;;;;;;0,1;5;8;6;;1079064;;;NO;Diametro: 26 cm Material: Tela;;;;;SI;;;;
-;Colapasta Aluminio N 28;;;;;;;;;;1;5;8;6;;1042998;;;NO;Diametro: 28 cm Altura: 16,5 cm Material: Aluminio;;;;Almandoz;SI;;;;
-;Filtro Cafe Tela 28 Cm;;;;;;;;;;0,1;5;8;6;;1079065;;;NO;Diametro: 28 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 30 Cm;;;;;;;;;;0,1;5;8;6;;1079066;;;NO;Diametro: 30 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 32 Cm;;;;;;;;;;0,1;5;8;6;;1079067;;;NO;Diametro: 32 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 34 Cm;;;;;;;;;;0,1;5;8;6;;1079068;;;NO;Diametro: 34 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 36 Cm;;;;;;;;;;0,1;5;8;6;;1079069;;;NO;Diametro: 36 cm Material: Tela;;;;;SI;;;;
-;Filtro Cafe Tela 38 Cm;;;;;;;;;;0,1;5;8;6;;1079070;;;NO;Diametro: 38 cm Material: Tela;;;;;SI;;;;
-;Jarro Cafe Irlandes 115 Cc;;;;;;;;;;0,1;5;8;6;;1185055;;;NO;Diametro: 5.5 cm Altura: 11 cm Capacidad: 115 ml;;;;Rigolleau;SI;;;;
-;Cazuela Melamina N 300 PS;;;;;;;;;;0,1;5;8;6;;1500109;;;NO;Diametro: 6 cm Altura: 3 cm Material: Plastico;;;;;SI;;;;
-;Cazuela Melamina N 230 Beige PS;;;;;;;;;;0,1;5;8;6;;1143955;;;NO;Diametro: 7 cm Altura: 3 cm Material: Plastico;;;;;SI;;;;
-;Cazuela Melamina N 230 Blanca PS;;;;;;;;;;0,1;5;8;6;;1143942;;;NO;Diametro: 7 cm Altura: 3 cm Material: Plastico;;;;;SI;;;;
-;Cazuela Melamina N 230 Negra PS;;;;;;;;;;0,1;5;8;6;;1143943;;;NO;Diametro: 7 cm Altura: 3 cm Material: Plastico;;;;;SI;;;;
-;Cazuela Melamina N 230 Terracota PS;;;;;;;;;;0,1;5;8;6;;1143941;;;NO;Diametro: 7 cm Altura: 3 cm Material: Plastico;;;;;SI;;;;
-;Embudo 8 Cm;;;;;;;;;;0,1;5;8;6;;1165000;;;NO;Diametro: 8 cm Material: Plastico;;;;;SI;;;;
-;Cuchara Cafe Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088110;;;NO;Largo: 10 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Helado Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088151;;;NO;Largo: 10 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Cafe Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088100;;;NO;Largo: 10 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Helado Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088150;;;NO;Largo: 10 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Cafe New York Pack X2;;;;;;;;;;0,1;5;8;6;;1228209;;;NO;Largo: 13 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchara Te Viena Pack X2;;;;;;;;;;0,1;5;8;6;;1228213;;;NO;Largo: 13 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchara Te Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088210;;;NO;Largo: 13 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Te Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088200;;;NO;Largo: 13 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Untar Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088360;;;NO;Largo: 15 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Untar Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088250;;;NO;Largo: 15 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Postre Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088070;;;NO;Largo: 16 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Postre Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088050;;;NO;Largo: 16 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Desayuno Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088230;;;NO;Largo: 16.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Desayuno Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088220;;;NO;Largo: 16.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Tenedor Postre Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088551;;;NO;Largo: 17 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Tenedor Postre Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088550;;;NO;Largo: 17 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Tenedor Mesa Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088505;;;NO;Largo: 18.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Tenedor Mesa Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088500;;;NO;Largo: 18.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Mesa New York Pack X2;;;;;;;;;;0,1;5;8;6;;1228208;;;NO;Largo: 19 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchara Mesa Viena Pack X2;;;;;;;;;;0,1;5;8;6;;1228212;;;NO;Largo: 19 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchara Refresco Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088074;;;NO;Largo: 19 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Refresco Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1085705;;;NO;Largo: 19 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Manga Tela Plastificada N 2;;;;;;;;;;0,1;5;8;6;;1203100;;;NO;Largo: 19 cm Material: Tela;;;;;SI;;;;
-;Descorazonador Acero;;;;;;;;;;0,2;5;8;6;;1235029;;;NO;Largo: 19.5 cm Acero Inoxidable;;;;Silcook;SI;;;;
-;Cuchara Mesa Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088010;;;NO;Largo: 19.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Mesa Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088310;;;NO;Largo: 19.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchara Mesa Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088000;;;NO;Largo: 19.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Mesa Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088305;;;NO;Largo: 19.5 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Postre Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088351;;;NO;Largo: 20 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Postre Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088350;;;NO;Largo: 20 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Carne New York Pack X2;;;;;;;;;;0,1;5;8;6;;1228207;;;NO;Largo: 22 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchillo Carne Viena Pack X2;;;;;;;;;;0,2;5;8;6;;1228211;;;NO;Largo: 22 cm Material: Acero Inoxidable;;;;Larhaus;SI;;;;
-;Cuchillo Carne Acero Liso X12;;;;;;;;;;0,1;5;8;6;;1088410;;;NO;Largo: 22 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Cuchillo Carne Acero Rayado X12;;;;;;;;;;0,1;5;8;6;;1088400;;;NO;Largo: 22 cm material: Acero Inoxidable;;;;Carol;SI;;;;
-;Corta Pizza Mango Madera Loekemeyer;;;;;;;;;;1;5;8;6;;1239110;;;NO;Largo: 23 cm Material: Madera | Acero Inoxidable;;;;Loekemeyer;SI;;;;
-;Manga Tela Plastificada N 3;;;;;;;;;;0,1;5;8;6;;1203200;;;NO;Largo: 25 cm Material: Tela;;;;;SI;;;;
-;Manopla Silicona Larga;;;;;;;;;;0,1;5;8;6;;1205154;;;NO;Largo: 28 cm Ancho: 12 cm Material: Silicona;;;;Silcook;SI;;;;
-;Manga Tela Plastificada N 4;;;;;;;;;;0,1;5;8;6;;1203300;;;NO;Largo: 29 cm Material: Tela;;;;;SI;;;;
-;Manga Tela Plastificada N 5;;;;;;;;;;0,1;5;8;6;;1203400;;;NO;Largo: 32 cm Material: Tela;;;;;SI;;;;
-;Espatula Cuchara Silicona 32 Cm;;;;;;;;;;0,3;5;8;6;;1205178;;;NO;Largo: 32.5 cm Ancho: 6.5 cm Material: Acrilico | Silicona;;;;;SI;;;;
-;Manga Tela Plastificada N 6;;;;;;;;;;0,1;5;8;6;;1203500;;;NO;Largo: 37 cm Material: Tela;;;;;SI;;;;
-;Manga Tela Plastificada N 7;;;;;;;;;;0,1;5;8;6;;1203600;;;NO;Largo: 42 cm Material: Tela;;;;;SI;;;;
-;Manga Tela Plastificada N 8;;;;;;;;;;0,1;5;8;6;;1203610;;;NO;Largo: 44 cm Material: Tela;;;;;SI;;;;
-;Fajinadores Pack X6;;;;;;;;;;0,1;5;8;6;;5000830;;;NO;Largo: 50 cm Ancho: 40 cm Material: Algodon Granite;;;;;SI;;;;
-;Destapador Corona;;;;;;;;;;0,3;5;8;6;;1236201;;;NO;Largo: 8.5 cm Ancho: 2 cm Material: Acero Inoxidable;;;;Loekemeyer;SI;;;;
-;Delantal Gabardina Negro;;;;;;;;;;0,2;5;8;6;;1140477;;;NO;Largo: 95 cm Ancho: 70 Material: Gabardina;;;;;SI;;;;
+Identificador de URL;Nombre;Categorías;Precio;Precio promocional;Peso (kg);Alto (cm);Ancho (cm);Profundidad (cm);Stock;SKU;Código de barras;Mostrar en tienda;Envío sin cargo;Descripción;Tags;Título para SEO;Descripción para SEO;Marca;Producto Físico;MPN (Número de pieza del fabricante);Sexo;Rango de edad;Costo
+;AMASADORA RAPIDA DIGITAL SILCOOK 130 LITROS;;11502158;;0,1;3;3;1;;1141903;;NO;NO;"Las amasadoras industriales SILCOOK están diseñadas para la elaboración a gran escala, siendo ideales para uso industrial. Este equipo cuenta con un bowl de acero inoxidable de 130 litros que permite amasar 50 kg de ingredientes secos con un 50% de agua y otros ingredientes que se deseen añadir a la masa.
+
+Este equipo cuenta con un comando digital en su frente con las funciones: Velocidad rapida, velocidad lenta, timer programable, stop, reversa y nuestro caracteristico controlador digital de temperatura. Ademas cuenta con un segundo panel de comandos analogico en su costado con las siguientes funciones: On/Off, velocidad lenta y velocidad rapida.
+
+Bowl de acero inoxidable con capacidad de 130 litros
+Capacidad de harina seca: hasta 50 kg
+Capacidad de agua: hasta el 50% de la cantidad de harina seca
+Doble motor
+Doble panel de comandos
+Dos velocidades: 156/235 RPM
+Función de reversa
+Timer incorporado con capacidad de programar las velocidades.
+Display digital de temperatura
+Parada de emergencia
+Rejilla de seguridad
+Voltaje: 380 V
+Potencia: 7.5 HP
+Dimensiones: 91 x 57 x 109 cm
+Peso neto: 280 kg
+Base con ruedas.
+Este equipo es fácil de usar, limpiar y tiene un bajo consumo energético, siendo una herramienta indispensable para la elaboración eficiente de masa en entornos industriales.";;;;SILCOOK;NO;;;;
+;HORNO PIZZERO DIGITAL APERTURA EUROPEA SILCOOK;;1821849;;0,1;3;3;1;;1141800;;NO;NO;"Caracteristicas:
+
+Voltaje: 220/380 V
+Potencia: 6.6 KW
+Dimensiones (mm): 1220 x 820 x 580
+Capacidad: 3 Moldes de 34 Cm de diámetro
+Rango de Temperatura: 30° a 400°
+12 Memorias programables
+Humidificador
+Panel Digital
+Sistema de apertura europeo para maxima conservación de calor
+Peso: 67Kg";;;;SILCOOK;NO;;;;
+;MESA DE TRABAJO 200 Cm ACERO 304;;1086176;;0,1;3;3;1;;1141896;;NO;NO;"Estas mesas de trabajo tienen una superficie lisa que se puede limpiar fácilmente después de amasar o mezclar los alimentos. Todas nuestras mesas de trabajo están fabricadas con un espesor de 1mm para un uso duradero, cuentan con patas regulables (hasta 1.5cm) y en el caso de los modelos con bacha, estos cuentan con su kit de desagüe y manguera. Además, están diseñadas para soportar un uso constante, lo que las hace ideales para cocinas con mucho movimiento o para su negocio de catering.
+
+Están hechas del mejor acero inoxidable permitidos por el código alimentario argentino (CAA) para cocina y para estar en contacto con el agua y alimentos. A continuación, detallamos información sobre sus materiales:
+
+Material: Acero inoxidable AISI 304
+Medida: 2000 x 750 x 900 (largo – profundidad – alto)
+Espesor: 1mm
+Alto del zócalo: 90mm";;;;SILCOOK;SI;;;;
+;MESA DE TRABAJO 160 Cm ACERO 304;;902832;;0,1;3;3;1;;1141897;;NO;NO;"Estas mesas de trabajo tienen una superficie lisa que se puede limpiar fácilmente después de amasar o mezclar los alimentos. Todas nuestras mesas de trabajo están fabricadas con un espesor de 1mm para un uso duradero, cuentan con patas regulables (hasta 1.5cm) y en el caso de los modelos con bacha, estos cuentan con su kit de desagüe y manguera. Además, están diseñadas para soportar un uso constante, lo que las hace ideales para cocinas con mucho movimiento o para su negocio de catering.
+
+Están hechas del mejor acero inoxidable permitidos por el código alimentario argentino (CAA) para cocina y para estar en contacto con el agua y alimentos. A continuación, detallamos información sobre sus materiales:
+
+Material: Acero inoxidable AISI 304
+Medida: 1600 x 750 x 900 (largo – profundidad – alto)
+Espesor: 1mm
+Alto del zócalo: 90mm";;;;SILCOOK;SI;;;;
+;MESA DE TRABAJO 120 Cm ACERO 304;;753239;;0,1;3;3;1;;1141899;;NO;NO;"Estas mesas de trabajo tienen una superficie lisa que se puede limpiar fácilmente después de amasar o mezclar los alimentos. Todas nuestras mesas de trabajo están fabricadas con un espesor de 1mm para un uso duradero, cuentan con patas regulables (hasta 1.5cm) y en el caso de los modelos con bacha, estos cuentan con su kit de desagüe y manguera. Además, están diseñadas para soportar un uso constante, lo que las hace ideales para cocinas con mucho movimiento o para su negocio de catering.
+
+Están hechas del mejor acero inoxidable permitidos por el código alimentario argentino (CAA) para cocina y para estar en contacto con el agua y alimentos. A continuación, detallamos información sobre sus materiales:
+
+Material: Acero inoxidable AISI 304
+Medida: 1200 x 750 x 900 (largo – profundidad – alto)
+Espesor: 1mm
+Alto del zócalo: 90mm";;;;SILCOOK;SI;;;;
+;MESA DE TRABAJO 140 Cm ACERO 304;;822271;;0,1;3;3;1;;1141898;;NO;NO;"Estas mesas de trabajo tienen una superficie lisa que se puede limpiar fácilmente después de amasar o mezclar los alimentos. Todas nuestras mesas de trabajo están fabricadas con un espesor de 1mm para un uso duradero, cuentan con patas regulables (hasta 1.5cm) y en el caso de los modelos con bacha, estos cuentan con su kit de desagüe y manguera. Además, están diseñadas para soportar un uso constante, lo que las hace ideales para cocinas con mucho movimiento o para su negocio de catering.
+
+Están hechas del mejor acero inoxidable permitidos por el código alimentario argentino (CAA) para cocina y para estar en contacto con el agua y alimentos. A continuación, detallamos información sobre sus materiales:
+
+Material: Acero inoxidable AISI 304
+Medida: 1400 x 750 x 900 (largo – profundidad – alto)
+Espesor: 1mm
+Alto del zócalo: 90mm";;;;SILCOOK;SI;;;;
+;COPA MODERNA SOL PACK X6;;19058;;0,1;3;3;1;;1063640;;NO;NO;"Caracteristicas:
+
+- Altura total 16,5 cm | Altura copón 9,5 cm
+- Diámetro boca 8 cm | Diámetro base 7,5 cm
+- Capacidad 290 ml
+- Pack x6 Unidades
+- Resistente a Choques Termicos";;;;;SI;;;;
+;VASO MODERNO SOL 320 ML PACK X6;;20646;;0,1;3;3;1;;1277501;;NO;NO;"Características:
+
+- Capacidad: 385 ml
+- Altura: 12,5 cm
+- Diámetro: 8 cm
+- Material: Vidrio Tramado
+- Pack x 6 unidades";;;;;SI;;;;
+;VASO MODERNO SOL 385 ML PACK X6;;16675;;0,1;3;3;1;;1091415;;NO;NO;"Características:
+
+- Capacidad: 385 ml
+- Altura: 12,5 cm
+- Diámetro: 8 cm
+- Material: Vidrio Tramado
+- Pack x 6 unidades";;;;;SI;;;;
+;VASO MODERNO SOL DORADO PACK X6;;23028;;0,1;3;3;1;;1091418;;NO;NO;"Características:
+
+- Capacidad: 385 ml
+- Altura: 12,5 cm
+- Diámetro: 8 cm
+- Material: Vidrio Tramado
+- Pack x 6 unidades";;;;;SI;;;;

@@ -7,7 +7,7 @@ export async function driveFindImageBySKU(sku, many = false) {
     const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
     const res = await drive.files.list({
-        q: `'1-R_zY7rBbem5DmHclokxLZF-wYsdvjep' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
+        q: `'1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
         fields: 'files(id, name)',
         orderBy: 'name'
     });
@@ -17,12 +17,24 @@ export async function driveFindImageBySKU(sku, many = false) {
     if (!files || files.length === 0) return null;
 
     if (many) {
-        return files.map(file => `https://drive.google.com/uc?export=view&id=${file.id}`);
+        return files.map(file => file.id); // ✅ devuelve array de IDs
     }
 
-    return `https://drive.google.com/uc?export=view&id=${files[0].id}`;
+    return files[0].id; // ✅ devuelve solo el ID
 }
 
+// En downloadDriveImageBuffer.js
+export async function downloadDriveImageBuffer(sku) {
+    const fileId = await driveFindImageBySKU(sku);
+    if (!fileId) return null;
+
+    const res = await drive.files.get(
+        { fileId, alt: 'media' },
+        { responseType: 'arraybuffer' }
+    );
+
+    return Buffer.from(res.data);
+}
 
 export async function getDriveFileName(fileId) {
     const res = await drive.files.get({
@@ -32,3 +44,5 @@ export async function getDriveFileName(fileId) {
 
     return res.data.name;
 }
+
+// driveFindImageBySKU("1263010").then(res => console.log("Resultado:", res));

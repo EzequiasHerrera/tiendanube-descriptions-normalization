@@ -1,5 +1,7 @@
 import getTokenAndStore from "./getTokenAndStore.js";
-import doInEveryProduct from "./doInEveryProduct.js";
+import { doInEveryProduct } from "./doInEveryProduct.js";
+import waitingConfirmation from "./waitingConfirmation.js";
+import { sendToAI } from "../integrations/AIservice.js";
 
 //FUNCION PARA CADA PRODUCTO (YA SE USÓ)
 const updateDescription = async (product, skuBuscado, token, store) => {
@@ -111,9 +113,9 @@ const normalizeDescription = async (product, token, store, cases) => {
         try {
             const result = await sendToAI(prompt);
             const newDescription = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
             console.log(`${product.name?.es} ${product.variants?.[0]?.sku}`)
             console.log("\n🧠 Texto generado:\n", newDescription);
+            // await waitingConfirmation();
 
             const url = `https://api.tiendanube.com/v1/${store}/products/${product.id}`;
             const res = await fetch(url, {
@@ -136,7 +138,8 @@ const normalizeDescription = async (product, token, store, cases) => {
         }
     }
 }
-const updateDescriptionsWithCasesAndAI = async (targetStore) => {
+
+export const updateDescriptionsWithCasesAndAI = async (targetStore) => {
     const access = getTokenAndStore(targetStore);
     const cases = { case1: 0, case2: 0, case3: 0, case4: 0, other: { number: 0, firstChars: [] } };
 
@@ -163,15 +166,101 @@ const updateDescriptionsWithCasesAndAI = async (targetStore) => {
     }
 
 }
+const addSkuToDescription = async (product, token, store, skuBuscadosConModelo) => {
+    try {
+        if (!product) {
+            console.warn("❌ No se encontró el producto en la tienda destino");
+            return;
+        }
+
+        const originalDescription = product.description?.es || "";
+        const sku = product.variants?.[0]?.sku || "";
+        const newDescription = `${originalDescription}\n<p>SKU: ${sku}</p>`;
+
+        const url = `https://api.tiendanube.com/v1/${store}/products/${product.id}`;
+        const res = await fetch(url, {
+            method: "PUT",
+            headers: {
+                Authentication: `bearer ${token}`,
+                "User-Agent": "Adding SKU to description (ezequiasherrera99@gmail.com)",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ description: newDescription }),
+        });
+
+        if (res.ok) {
+            console.log(`✅ Descripción actualizada para producto SKU ${product.variants?.[0]?.sku}`);
+        } else {
+            console.warn(`❌ Error al actualizar producto ${product.id}: ${res.statusText}`);
+        }
+    } catch (error) {
+        console.error("❌ Error al generar o subir la descripción:", error);
+    }
+}
+const addModelToDescription = async (product, token, store, skuBuscadosConModelo) => {
+    try {
+        if (!product) return;
+
+        const sku = product.variants?.[0]?.sku || "";
+        const modelo = skuBuscadosConModelo[sku];
+        if (!modelo) return;
+
+        const originalDescription = product.description?.es || "";
+
+        // Evitar duplicar
+        if (originalDescription.includes(`Modelo:`) && originalDescription.includes(modelo)) return;
+
+        let newDescription;
+
+        const lastLiIndex = originalDescription.lastIndexOf("</li>");
+
+        if (lastLiIndex !== -1) {
+            // Insertar modelo justo después del último </li>
+            newDescription =
+                originalDescription.slice(0, lastLiIndex + 5) +
+                `<li><strong>Modelo:</strong> ${modelo}</li>` +
+                originalDescription.slice(lastLiIndex + 5);
+        } else {
+            // Si no hay <li>, agregamos al final como lista nueva
+            newDescription = `${originalDescription}\n<ul><li><strong>Modelo:</strong> ${modelo}</li></ul>`;
+        }
+
+        console.log(`✅ Modelo agregado para SKU ${sku}: ${modelo}`);
+        console.log(newDescription);
+
+        const url = `https://api.tiendanube.com/v1/${store}/products/${product.id}`;
+        const res = await fetch(url, {
+            method: "PUT",
+            headers: {
+                Authentication: `bearer ${token}`,
+                "User-Agent": "Adding modelo to description (ezequiasherrera99@gmail.com)",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ description: { es: newDescription } }),
+        });
+
+        if (res.ok) {
+            console.log(`✅ Descripción actualizada para producto con SKU ${sku} (Modelo: ${modelo})`);
+        } else {
+            console.warn(`❌ Error al actualizar producto ${product.id}: ${res.statusText}`);
+        }
+    } catch (error) {
+        console.error("❌ Error al generar o subir la descripción:", error);
+    }
+};
+
 //FUNCION PRINCIPAL DE DONDE COMIENZA
-export const updateDescriptionWithAI = async (skuBuscado, targetStore) => {
-    const access = getTokenAndStore(targetStore);
+export const descriptionModificationCore = async () => {
+    const access = await getTokenAndStore("KTHOGAR");
+
+    const skuBuscadosConModelo = {
+    }
 
     await doInEveryProduct(
-        (product) => updateDescription(product, skuBuscado, access.token, access.store),
-        token,
-        store
+        (product) => addSkuToDescription(product, access.token, access.store),
+        access.token,
+        access.store
     );
 };
 
-export default { updateDescriptionsWithCasesAndAI, updateDescription, removeComments, removeHtmlTags, removeStyleTags, detectCase, cleanDescriptionFromHTML, normalizeDescription }
+export default { updateDescription, removeComments, removeHtmlTags, removeStyleTags, detectCase, cleanDescriptionFromHTML, normalizeDescription }

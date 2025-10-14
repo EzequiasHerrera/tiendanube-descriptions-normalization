@@ -1,8 +1,10 @@
 import { sendToAI } from "../integrations/AIservice.js";
 import { driveFindImageBySKU, getDriveFileName } from "../integrations/driveService.js";
 import getTokenAndStore from "../utils/getTokenAndStore.js";
+import waitingConfirmation from "../utils/waitingConfirmation.js";
 import { getRawProductsFromExcel } from "./excelService.js"
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 
@@ -98,6 +100,8 @@ const uploadProductsFromExcel = async () => {
     for (const product of rawProducts) {
         console.log(`\n📦 Preparando producto: ${product.nombre}`);
 
+        if (product.sku === "1063640" || product.sku === "1141800" || product.sku === "1141903") continue;
+
         const descripcionAI = await formatDescriptionWithAI(product.descripcionRaw);
         const imagenes = await driveFindImageBySKU(product.sku, true) || [];
 
@@ -111,4 +115,118 @@ const uploadProductsFromExcel = async () => {
     }
 };
 
-export { uploadProductsFromExcel };
+const setProductAsVisible = async (product, token, store) => {
+    //Provoletera 1241218
+    const skuBuscados = [
+        "1271311",
+        "1271310",
+        "1141759",
+        "1210101",
+        "1210012",
+        "1244710",
+        "5001383",
+        "1107130",
+        "1107131",
+        "1107121",
+        "1107122",
+        "1107123",
+        "1107124",
+        "1107125",
+        "1107126",
+        "1107127",
+        "1107128",
+        "1107129",
+        "1135950",
+        "1500110",
+        "1106365",
+        "1106366",
+        "1106367",
+        "1106370",
+        "1106371",
+        "1106368",
+        "1106369"
+    ];
+
+    const productId = product.id;
+
+    const sku = product.variants?.[0]?.sku;
+
+    if (skuBuscados.some(skuObjetivo => skuObjetivo === sku)) {
+        // continuar con la lógica
+        try {
+            const response = await fetch(`https://api.tiendanube.com/v1/${store}/products/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    "Authentication": `bearer ${token}`,
+                    "User-Agent": "Visibility updater (ezequiasherrera99@gmail.com)",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    published: true
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log(`✅ Producto ${productId} ahora está visible en la tienda.`);
+            } else {
+                console.warn(`⚠️ No se pudo actualizar visibilidad para ${productId}:`, result);
+            }
+        } catch (err) {
+            console.error(`❌ Error al cambiar visibilidad del producto ${productId}:`, err.message);
+        }
+    }
+};
+
+const setWhatsappButtonOnProducts = async (product, productosMap, token, store) => {
+    const skuBuscados = ["1141759", "1243575", "1243573", "1243574", "1243572", "1151768", "1151767", "1243571", "1243570", "1243569", "1142110", "1142103", "1142102", "1142101", "1142100", "1142016", "1142015", "1142014", "1142013", "1142012", "1142011", "1142010", "1142009", "1142008", "1142007", "1142006", "1142005", "1142004", "1142003", "1141999", "1141998", "1141995", "1141994", "1141993", "1141992", "1141991", "1141990", "1141989", "1141983", "1141982", "1141981", "1141980", "1141979", "1141978", "1141977", "1141972", "1141971", "1141970", "1141914", "1141913", "1141837", "1141836", "1141835", "1141823", "1141822", "1141821", "1141820", "1141811", "1141810", "1141806", "1141803", "1141802", "1141801", "1141799", "1141798", "1141796", "1141795", "1141772", "1141771", "1141767", "1141765", "1141764", "1141763", "1141760", "1141703", "1141758", "1141757", "1141734", "1141733", "1141732", "1141731", "1141730", "1141729", "1141728", "1141727", "1141726", "1141725", "1141724", "1141723", "1141722", "1141721", "1141719", "1141715", "1141714", "1141712", "1141711", "1141710", "1141709", "1141708", "1141707", "1141705", "1141704", "1141703", "1141702", "1131706", "1131705", "1131704", "1131703"];
+
+    const productId = product.id;
+    const sku = product.variants?.[0]?.sku;
+
+    if (skuBuscados.includes(sku)) {
+        const producto = productosMap[sku];
+
+        if (!producto) {
+            console.warn(`⚠️ SKU ${sku} no encontrado en productos.json`);
+            return;
+        }
+
+        try {
+            for (const variant of product.variants) {
+                const variantId = variant.id;
+
+                const variantResponse = await fetch(
+                    `https://api.tiendanube.com/v1/${store}/products/${productId}/variants/${variantId}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Authentication": `bearer ${token}`,
+                            "User-Agent": "Visibility updater (ezequiasherrera99@gmail.com)",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            price: producto.precio,
+                            compare_at_price: "",
+                            promotional_price: ""
+                        })
+                    }
+                );
+
+                const variantResult = await variantResponse.json();
+
+                if (variantResponse.ok) {
+                    console.log(`✅ Variante ${variant.sku} actualizada con precio ${producto.precio}.`);
+                } else {
+                    console.warn(`⚠️ No se pudo actualizar variante ${variantId}:`, variantResult);
+                }
+            }
+        } catch (err) {
+            console.error(`❌ Error al procesar producto ${productId}:`, err.message);
+        }
+    }
+};
+
+
+export { uploadProductsFromExcel, setProductAsVisible, setWhatsappButtonOnProducts };
