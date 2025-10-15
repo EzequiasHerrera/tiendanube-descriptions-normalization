@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import { oauth2Client } from "./googleAuth.js";
+import waitingConfirmation from "../utils/waitingConfirmation.js";
 
 const drive = google.drive({ version: "v3", auth: oauth2Client });
 
@@ -85,4 +86,67 @@ export async function getDriveFileName(fileId) {
   return res.data.name;
 }
 
-// driveFindImageBySKU("1141897", true).then(res => console.log("Resultado:", res));
+const folderA = "1-R_zY7rBbem5DmHclokxLZF-wYsdvjep"; // origen
+const folderB = "1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM"; // destino
+
+async function sincronizarImagenesDrive() {
+  const getImageFilesFromFolder = async (folderId) => {
+    let files = [];
+    let pageToken = null;
+
+    do {
+      const res = await drive.files.list({
+        q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
+        fields: "nextPageToken, files(id, name)",
+        orderBy: "name",
+        pageSize: 1000,
+        pageToken: pageToken,
+      });
+
+      files = files.concat(res.data.files);
+      pageToken = res.data.nextPageToken;
+    } while (pageToken);
+
+    return files;
+  };
+
+  const copiarArchivo = async (fileId, newName) => {
+    await drive.files.copy({
+      fileId,
+      requestBody: {
+        name: newName,
+        parents: [folderB],
+      },
+    });
+  };
+
+  const [archivosA, archivosB] = await Promise.all([
+    getImageFilesFromFolder(folderA),
+    getImageFilesFromFolder(folderB),
+  ]);
+
+  const nombresB = archivosB.map((file) => file.name);
+  const faltantes = archivosA.filter((file) => !nombresB.includes(file.name));
+
+  if (faltantes.length === 0) {
+    console.log("✅ Todas las imágenes ya están sincronizadas.");
+    return;
+  }
+
+  console.log("❌ Las siguientes imágenes faltan en la carpeta B:\n");
+  console.log(faltantes.map((f) => f.name).join("\n"));
+
+  // 🔔 Espera confirmación antes de copiar
+  await waitingConfirmation();
+
+  console.log("\n📥 Copiando imágenes faltantes a la carpeta B:\n");
+  for (const file of faltantes) {
+    console.log(file.name);
+    await copiarArchivo(file.id, file.name);
+  }
+
+  console.log(`\n✅ Se copiaron ${faltantes.length} imágenes faltantes.`);
+}
+
+sincronizarImagenesDrive();
+// driveFindImageBySKU("1141800", false).then(res => console.log("Resultado:", res));
