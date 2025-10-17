@@ -28,7 +28,7 @@ export async function getURLbySKU(sku, many = false) {
   const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
   const res = await drive.files.list({
-    q: `'1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
+    q: `'${folderA}' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
     fields: "files(id, name)",
     orderBy: "name",
   });
@@ -147,6 +147,3 @@ async function sincronizarImagenesDrive() {
 
   console.log(`\n✅ Se copiaron ${faltantes.length} imágenes faltantes.`);
 }
-
-sincronizarImagenesDrive();
-// driveFindImageBySKU("1141800", false).then(res => console.log("Resultado:", res));

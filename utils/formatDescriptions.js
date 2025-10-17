@@ -61,6 +61,7 @@ const removeStyleTags = (html) => {
 const detectCase = (descripcion) => {
     const inicio = descripcion.trim().slice(0, 20).toLowerCase();
 
+    if (descripcion.includes("rgb(255, 153, 0)")) return "casoRGB";
     if (inicio.startsWith("<p>&nbsp;</p>")) return "caso1";
     if (inicio.startsWith("<table")) return "caso2";
     if (inicio.startsWith("<meta")) return "caso3";
@@ -79,10 +80,16 @@ const cleanDescriptionFromHTML = (description, actionCase, cases) => {
             cases.case3++;
             return removeHtmlTags(description); // retorno texto sin HTML
         }
-        case "caso4":
+        case "caso4": {
             cases.case4++;
             const descriptionWithoutComments = removeComments(description)
             return removeHtmlTags(descriptionWithoutComments);
+        }
+        case "casoRGB": {
+            cases.caseRGB++;
+            const descriptionWithoutComments = removeComments(description)
+            return removeHtmlTags(descriptionWithoutComments);
+        }
         default:
             cases.other.number++;
             const primeros5 = description.trim().slice(0, 5);
@@ -94,11 +101,10 @@ const cleanDescriptionFromHTML = (description, actionCase, cases) => {
             return description; // no tocar o desconocido
     }
 };
-const normalizeDescription = async (product, token, store, cases) => {
-
+export const normalizeDescription = async (product, token, store) => {
+    const cases = { case1: 0, case2: 0, case3: 0, case4: 0, caseRGB: 0, other: { number: 0, firstChars: [] } };
     //OBTENGO LA DESCRIPCIÓN
     const description = product?.description?.es || "";
-
     //QUITO LOS COMENTARIOS: <!-- -->
     const descriptionNoComments = removeComments(description);
     //QUITO EL STYLES SI ES QUE TIENE: <style </style
@@ -108,7 +114,7 @@ const normalizeDescription = async (product, token, store, cases) => {
     const descripcionLimpia = cleanDescriptionFromHTML(descriptionNoStyle, actionCase, cases);
 
     if (actionCase != "otro") {
-        const prompt = `Necesito la info del producto ${product.name?.es} organizada en items <li> para volcar en mi web y que quede ordenada y tipo texto plano html <ul>. Ignora emojis y todas las etiquetas HTML que no tengan relación con el producto. Unicamente mandame lo que necesito asi copio y pego, no interactues conmigo. Si la info que te copio tiene un encabezado del titulo del producto, reemplaza ese encabezado por la palabra Caracteristicas Principales dentro de la etiqueta <strong> y este debe estar encima y fuera de la etiqueta <ul>. Nunca menciones el nombre del producto: ${descripcionLimpia}`;
+        const prompt = `Necesito la info del producto ${product.name?.es} organizada en items <li> para volcar en mi web y que quede ordenada y tipo texto plano html <ul>. Ignora emojis y todas las etiquetas HTML que no tengan relación con el producto. Unicamente mandame lo que necesito asi copio y pego, no interactues conmigo. Si la info que te copio tiene un encabezado del titulo del producto, reemplaza ese encabezado por la palabra Caracteristicas Principales dentro de la etiqueta <strong> y este debe estar encima y fuera de la etiqueta <ul>. El SKU debe ir en la ultima parte fuera de la lista <ul>, dentro de una etiqueta <p>. Nunca menciones el nombre del producto: ${descripcionLimpia}`;
 
         try {
             const result = await sendToAI(prompt);
@@ -139,33 +145,6 @@ const normalizeDescription = async (product, token, store, cases) => {
     }
 }
 
-export const updateDescriptionsWithCasesAndAI = async (targetStore) => {
-    const access = getTokenAndStore(targetStore);
-    const cases = { case1: 0, case2: 0, case3: 0, case4: 0, other: { number: 0, firstChars: [] } };
-
-    await doInEveryProduct(
-        (product) => normalizeDescription(product, access.token, access.store, cases),
-        access.token,
-        access.store
-    );
-
-    console.log("\n📊 Resumen de casos:");
-    console.log("Caso 1:", cases.case1);
-    console.log("Caso 2:", cases.case2);
-    console.log("Caso 3:", cases.case3);
-    console.log("Caso 4:", cases.case4);
-    console.log("Otros/Ignorados:", cases.other);
-
-    if (cases.other.firstChars.length > 0) {
-        console.log("\n🔍 Primeros 5 caracteres de los ignorados:");
-        cases.other.firstChars.forEach((chars, index) => {
-            console.log(`${index + 1}. "${chars}"`);
-        });
-    } else {
-        console.log("\n✅ No hubo casos ignorados.");
-    }
-
-}
 const addSkuToDescription = async (product, token, store, skuBuscadosConModelo) => {
     try {
         if (!product) {
@@ -251,7 +230,7 @@ const addModelToDescription = async (product, token, store, skuBuscadosConModelo
 
 //FUNCION PRINCIPAL DE DONDE COMIENZA
 export const descriptionModificationCore = async () => {
-    const access = await getTokenAndStore("KTHOGAR");
+    const access = await getTokenAndStore("KTGASTRO");
 
     const skuBuscadosConModelo = {
     }
@@ -263,4 +242,4 @@ export const descriptionModificationCore = async () => {
     );
 };
 
-export default { updateDescription, removeComments, removeHtmlTags, removeStyleTags, detectCase, cleanDescriptionFromHTML, normalizeDescription }
+export default { updateDescription, removeComments, removeHtmlTags, removeStyleTags, detectCase, cleanDescriptionFromHTML }

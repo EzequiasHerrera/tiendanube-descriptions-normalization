@@ -39,7 +39,7 @@ export const doInEveryProduct = async (action, storeName, perPage = 200) => {
 
         // 🔢 Procesar uno por uno con confirmación
         for (const product of products) {
-            await action(product); // Espera que termine antes de seguir
+            await action(product, access.token, access.store); // Espera que termine antes de seguir
         }
 
         totalProductos += products.length;
