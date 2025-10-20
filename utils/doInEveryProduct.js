@@ -1,6 +1,5 @@
 import getTokenAndStore from "./getTokenAndStore.js";
 
-// 📦 Obtiene productos en una pagina específica
 const fetchAllProductsInPage = async (page = 1, token, store, perpage) => {
     const url = `https://api.tiendanube.com/v1/${store}/products?per_page=${perpage}&page=${page}`;
     const res = await fetch(url, {
@@ -20,26 +19,25 @@ const fetchAllProductsInPage = async (page = 1, token, store, perpage) => {
     return res.json();
 };
 
-//ORDENADO DESDE LO MÁS GENERAL Y AMPLIO HASTA LO MÁS INDIVIDUAL Y SINGULAR
-//🔁 Recorre todos los productos de una tienda
-export const doInEveryProduct = async (action, storeName, perPage = 200) => {
+export const doInEveryProduct = async (action, storeName, skuBuscados = [], perPage = 200) => {
     const access = getTokenAndStore(storeName);
     let page = 1;
-    let totalProductos = 0; //Para llevar la cuenta total de productos vistos
+    let totalProductos = 0;
 
     while (true) {
-        //Obtiene los productos en la pagina actual
         const products = await fetchAllProductsInPage(page, access.token, access.store, perPage);
-
-        //Si no hay productos se corta el proceso
         if (!products || products.length === 0) break;
-
         // ♾️ Procesar todos en paralelo
         // await Promise.all(products.map(action));
 
-        // 🔢 Procesar uno por uno con confirmación
         for (const product of products) {
-            await action(product, access.token, access.store); // Espera que termine antes de seguir
+            const skuActual = product.variants?.[0]?.sku;
+
+            if (skuBuscados.length > 0 && !skuBuscados.includes(skuActual)) {
+                continue;
+            }
+
+            await action(product, access.token, access.store);
         }
 
         totalProductos += products.length;

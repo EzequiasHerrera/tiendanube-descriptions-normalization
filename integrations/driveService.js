@@ -4,6 +4,9 @@ import waitingConfirmation from "../utils/waitingConfirmation.js";
 
 const drive = google.drive({ version: "v3", auth: oauth2Client });
 
+const folderA = "1-R_zY7rBbem5DmHclokxLZF-wYsdvjep"; // origen
+const folderB = "1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM"; // destino
+
 export async function driveFindImageBySKU(sku, many = false) {
   const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
@@ -28,7 +31,7 @@ export async function getURLbySKU(sku, many = false) {
   const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
   const res = await drive.files.list({
-    q: `'${folderA}' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
+    q: `'${folderB}' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
     fields: "files(id, name)",
     orderBy: "name",
   });
@@ -46,7 +49,6 @@ export async function getURLbySKU(sku, many = false) {
   return getPublicURL(files[0].id);
 }
 
-// En downloadDriveImageBuffer.js
 export const downloadDriveImageBufferById = async (fileId) => {
   const res = await drive.files.get(
     { fileId, alt: "media" },
@@ -85,9 +87,6 @@ export async function getDriveFileName(fileId) {
 
   return res.data.name;
 }
-
-const folderA = "1-R_zY7rBbem5DmHclokxLZF-wYsdvjep"; // origen
-const folderB = "1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM"; // destino
 
 async function sincronizarImagenesDrive() {
   const getImageFilesFromFolder = async (folderId) => {

@@ -14,25 +14,23 @@ export const adjustMarginPictures = async (product, mode) => {
   const productId = product.id;
   const tiendaImageURL = product.images?.[0]?.src;
 
-  // if (!sku || !skuBuscados.includes(sku)) return;
-
   console.log(`🔍 Analizando imagen para SKU: ${sku} (ID: ${productId})`);
 
   let buffer;
   let source = "Tienda Nube";
 
   // Intentar descargar imagen de Tienda Nube
-  // try {
-  //     const response = await fetch(tiendaImageURL);
-  //     if (response.ok) {
-  //         const arrayBuffer = await response.arrayBuffer();
-  //         buffer = Buffer.from(arrayBuffer);
-  //     } else {
-  //         console.warn(`⚠️ Imagen de Tienda Nube no disponible (status: ${response.status})`);
-  //     }
-  // } catch (err) {
-  //     console.warn(`⚠️ Error al descargar imagen de Tienda Nube: ${err.message}`);
-  // }
+  try {
+    const response = await fetch(tiendaImageURL);
+    if (response.ok) {
+      const arrayBuffer = await response.arrayBuffer();
+      buffer = Buffer.from(arrayBuffer);
+    } else {
+      console.warn(`⚠️ Imagen de Tienda Nube no disponible (status: ${response.status})`);
+    }
+  } catch (err) {
+    console.warn(`⚠️ Error al descargar imagen de Tienda Nube: ${err.message}`);
+  }
 
   // Si no se pudo usar Tienda Nube, buscar en Drive
   // if (!buffer || buffer.length === 0) {

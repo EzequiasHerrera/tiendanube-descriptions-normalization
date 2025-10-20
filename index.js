@@ -1,22 +1,16 @@
 import dotenv from "dotenv";
-import { uploadProductsFromExcel } from "./services/productsService.js";
 import { doInEveryProduct } from "./utils/doInEveryProduct.js";
-import { adjustMarginPictures } from "./utils/cropPictures.js";
-import { normalizeDescription } from "./utils/formatDescriptions.js"
+import { addSkuToDescription } from "./utils/formatDescriptions.js";
 dotenv.config();
 
 const skuBuscados = [
-    "1107121",
-    "1107122",
-    "1107123",
-    "1107124",
-    "1107125",
-    "1107126",
-    "1107127",
-    "1107128",
-    "1107129",
+    "1063640",
+    "1141896",
+    "1141897",
+    "1141898",
+    "1141899"
 ];
 
-doInEveryProduct(normalizeDescription, "KTHOGAR")
+doInEveryProduct(addSkuToDescription, "KTGASTRO", skuBuscados)
 
 // uploadProductsFromExcel("KTGASTRO");

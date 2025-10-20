@@ -145,7 +145,7 @@ export const normalizeDescription = async (product, token, store) => {
     }
 }
 
-const addSkuToDescription = async (product, token, store, skuBuscadosConModelo) => {
+export const addSkuToDescription = async (product, token, store) => {
     try {
         if (!product) {
             console.warn("❌ No se encontró el producto en la tienda destino");
