@@ -1,13 +1,13 @@
 import readline from "readline";
 
-const waitingConfirmation = (show = false) => {
+const waitingConfirmation = (show = null) => {
     return new Promise((resolve, reject) => {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
         });
 
-        if(show == false){
+        if(show == null){
             rl.question("🛑 Presioná Enter para continuar o escribí 's' para saltear este producto...\n", (input) => {
                 rl.close();
                 if (input.trim().toLowerCase() === 's') {

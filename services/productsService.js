@@ -79,15 +79,18 @@ const uploadProducts = async (product) => {
     categories: product.categorias || [],
   };
 
-  const res = await fetch(`https://api.tiendanube.com/v1/6600821/products`, {
-    method: "POST",
-    headers: {
-      Authentication: `bearer 3e9934c4e6df3ad67c0b45e65ee7622bafef9aee`,
-      "User-Agent": "Excel Uploader (ezequiasherrera99@gmail.com)",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  const res = await fetch(
+    `https://api.tiendanube.com/v1/${access.store}/products`,
+    {
+      method: "POST",
+      headers: {
+        Authentication: `bearer ${access.token}`,
+        "User-Agent": "Excel Uploader (ezequiasherrera99@gmail.com)",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }
+  );
 
   const result = await res.json();
 
@@ -104,6 +107,22 @@ const uploadProducts = async (product) => {
   }
 };
 
+export const getProductBySKU = async (sku, token, store) => {
+  const res = await fetch(
+    `https://api.tiendanube.com/v1/${store}/products/sku/${sku}`,
+    {
+      method: "GET",
+      headers: {
+        Authentication: `bearer ${token}`,
+        "User-Agent": "Getting product (ezequiasherrera99@gmail.com)",
+        "Content-Type": "application/json",
+      }
+    }
+  );
+
+  return res.json();
+};
+
 const uploadProductsFromExcel = async () => {
   const rawProducts = await getRawProductsFromExcel();
 
@@ -118,6 +137,8 @@ const uploadProductsFromExcel = async () => {
       descripcion: descripcionAI || "",
       fileIds,
     };
+
+    // await waitingConfirmation(fullProduct);
     await uploadProducts(fullProduct);
   }
 };
