@@ -4,14 +4,13 @@ import waitingConfirmation from "../utils/waitingConfirmation.js";
 
 const drive = google.drive({ version: "v3", auth: oauth2Client });
 
-const folderA = "1-R_zY7rBbem5DmHclokxLZF-wYsdvjep"; // origen
-const folderB = "1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM"; // destino
+const folder = "1O_lJSVDiXSJ37_IgSVh5AScFhc-hBWPt"; // origen
 
 export async function driveFindImageBySKU(sku, many = false) {
   const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
   const res = await drive.files.list({
-    q: `'1NMgqDd8fzBQV1ShiUWl-waSxxPvsUAaM' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
+    q: `'1O_lJSVDiXSJ37_IgSVh5AScFhc-hBWPt' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
     fields: "files(id, name)",
     orderBy: "name",
   });
@@ -31,7 +30,7 @@ export async function getURLbySKU(sku, many = false) {
   const q = many ? `name contains '${sku}'` : `name = '${sku}.jpg'`;
 
   const res = await drive.files.list({
-    q: `'${folderB}' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
+    q: `'${folder}' in parents and ${q} and mimeType contains 'image/' and trashed = false`,
     fields: "files(id, name)",
     orderBy: "name",
   });
@@ -41,6 +40,7 @@ export async function getURLbySKU(sku, many = false) {
   if (!files || files.length === 0) return null;
 
   const getPublicURL = (id) => `https://drive.google.com/uc?id=${id}`;
+
 
   if (many) {
     return files.map((file) => getPublicURL(file.id));
@@ -114,14 +114,14 @@ async function sincronizarImagenesDrive() {
       fileId,
       requestBody: {
         name: newName,
-        parents: [folderB],
+        parents: [folder],
       },
     });
   };
 
   const [archivosA, archivosB] = await Promise.all([
-    getImageFilesFromFolder(folderA),
-    getImageFilesFromFolder(folderB),
+    getImageFilesFromFolder(folder),
+    getImageFilesFromFolder(folder),
   ]);
 
   const nombresB = archivosB.map((file) => file.name);

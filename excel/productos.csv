@@ -1,19 +1,54 @@
 Identificador de URL;Nombre;Categorías;Precio;Precio promocional;Peso (kg);Alto (cm);Ancho (cm);Profundidad (cm);Stock;SKU;Código de barras;Mostrar en tienda;Envío sin cargo;Descripción;Tags;Título para SEO;Descripción para SEO;Marca;Producto Físico;MPN (Número de pieza del fabricante);Sexo;Rango de edad;Costo
-;GN 1/3 10 CM PERFORADO;GN 1/3 10 Cm Perforado;1000;;0,01;1;2;1;;1500297;;NO;NO;Largo 32 cm Ancho 16,5 cm Alto 10 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/3 6,5 CM PERFORADO;GN 1/3 6,5 Cm Perforado;1000;;0,01;1;2;1;;1500299;;NO;NO;Largo 32 cm Ancho 16,5 cm Alto 6,5 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/4 10 CM PERFORADO;GN 1/4 10 Cm Perforado;1000;;0,01;1;2;1;;1500300;;NO;NO;Largo 26,5 cm Ancho 16,5 cm Alto 10 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/4 5 CM PERFORADO;GN 1/4 5 Cm Perforado;1000;;0,01;1;2;1;;1500301;;NO;NO;Largo 26,5 cm Ancho 16,5 cm Alto 5 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/6 10 CM PERFORADO;GN 1/6 10 Cm Perforado;1000;;0,01;1;2;1;;1500302;;NO;NO;Largo 17,5 cm Ancho 16,5 cm Alto 10 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/6 5 CM PERFORADO;GN 1/6 5 Cm Perforado;1000;;0,01;1;2;1;;1500303;;NO;NO;Largo 17,5 cm Ancho 16,5 cm Alto 6,5 Cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/9 10 CM PERFORADO;GN 1/9 10 Cm Perforado;1000;;0,01;1;2;1;;1500304;;NO;NO;Largo 18 cm Ancho 11 cm Alto 10 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/9 6,5 CM PERFORADO;GN 1/9 6,5 Cm Perforado;1000;;0,01;1;2;1;;1500305;;NO;NO;Largo 18 cm Ancho 11 cm Alto 6,5 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/1 10 CM PERFORADO;GN 1/1 10 Cm Perforado;1000;;0,01;1;2;1;;1500286;;NO;NO;Largo 53 cm Ancho 32 cm Alto 10 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/1 6,5 CM PERFORADO;GN 1/1 6,5 Cm Perforado;1000;;0,01;1;2;1;;1500289;;NO;NO;Largo 53 cm Ancho 32 cm Alto 6,5 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/2 10 CM PERFORADO;GN 1/2 10 Cm Perforado;1000;;0,01;1;2;1;;1500291;;NO;NO;Largo 32 cm Ancho 26 cm Alto 10 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;GN 1/2 6,5 CM PERFORADO;GN 1/2 6,5 Cm Perforado;1000;;0,01;1;2;1;;1500293;;NO;NO;Largo 32 cm Ancho 26 cm Alto 6,5 cm Material: Acero AISI 202. Perforado. ;;;;;SI;;;;
-;BANNETON OVAL 24 CM;Banneton oval 24 cm;1000;;0,01;1;2;1;;1500306;;NO;NO;"Largo 24,5 cm Ancho 15 cm Alto 9 cm Material: Cuerda de Algodón. Es un canasto de feremntacion que da forma y estructura al pan durante la fermentación final; da forma al pan mientras la masa reposa y crece. Sin el, podría expandirse o aplanarse de forma irregular.";;;;;SI;;;;
-;BANNETON OVAL 27 CM;Banneton oval 27 cm;1000;;0,01;1;2;1;;1500307;;NO;NO;"Largo 26 cm Ancho 16 cm Alto 9 cm Material: Cuerda de Algodón. Es un canasto de feremntacion que da forma y estructura al pan durante la fermentación final; da forma al pan mientras la masa reposa y crece. Sin el, podría expandirse o aplanarse de forma irregular.";;;;;SI;;;;
-;JERINGA PARA ADOBAR ACERO ;Jeringa para Adobar Acero ;1000;;0,01;1;2;1;;1500295;;NO;NO;"Capacidad 60 Ml
-Kit inyector aprobado para contacto seguro con alimentos
-3 agujas de acero inoxidable 304 de alta calidad y seguras
-Cuerpo de acero inoxidable culinario premium y aleación de zinc metálico";;;;;SI;;;;
+;Canasta para Papas Fritas Grande;;1000;;0,01;1;1;1;;1144430;;SI;NO;Material: Alambre. Largo: 13 cm Ancho: 11 Cm Altura: 8 Cm;;;;;SI;;;;
+;Canasta para Papas Fritas Chica;;1000;;0,01;1;1;1;;1144431;;SI;NO;Material: Alambre. Largo: 10,5 cm Ancho: 8,5 Cm Altura: 6,5 Cm;;;;;SI;;;;
+;Embutidora Electrica 15 Lt Silcook;;1000;;0,01;1;1;1;;1243577;;SI;NO;Prepare salchichas o chorizos consistentes con la embutidora manual Silcook de 15 litros. Su diseño vertical ofrece un rendimiento confiable y ocupa un espacio mínimo en la encimera. Además, su construcción fácil de usar y mantener le permitirá mantener su embutidora funcionando con la máxima eficiencia. Voltaje: 220v. Potencia: 120w. Regulación de velocidad continua. Recipiente desmontable e inclinable. Peso: 30kg. Medidas: 370 x 310 x 760 mm. Material del cuerpo: acero inoxidable. Material de embudos: acero inoxidable. Capacidad: 15 litros.;;;;Silcook;NO;;;;
+;Embutidora Electrica 20 Lt Silcook;;1000;;0,01;1;1;1;;1243576;;SI;NO;"Prepare salchichas o chorizos consistentes con la embutidora electrica Silcook de 20 litros. Su diseño vertical ofrece un rendimiento confiable y ocupa un espacio mínimo en la encimera. Además, su construcción fácil de usar y mantener le permitirá mantener su embutidora funcionando con la máxima eficiencia.
+
+Voltaje: 220v
+Potencia: 300 w
+Regulacion de velocidad continua.
+Recipiente desmontable e inclinable.
+Peso: 46kg.
+Medidas: 785 x 525 x 475 mm.
+Medida del cilindro: 279 x 365 mm.
+Material del cuerpo: Acero inoxidable
+Material de embudos: Acero inoxidable
+Capacidad: 20 litros.";;;;Silcook;NO;;;;
+;Schmidt Ensaladera Porcelana 17 Cm;;1000;;0,01;1;1;1;;1185176;;SI;NO;Material: Porcelana Diametro: 17 Cm Altura:;;;;Schmidt;SI;;;;
+;Schmidt Ensaladera Porcelana 19 Cm;;1000;;0,01;1;1;1;;1185178;;SI;NO;Material: Porcelana Diametro: 19 Cm Altura:;;;;Schmidt;SI;;;;
+;Schmidt Ensaladera Porcelana 22 Cm;;1000;;0,01;1;1;1;;1185177;;SI;NO;Material: Porcelana Diametro: 22 Cm Altura:;;;;Schmidt;SI;;;;
+;Schmidt Pimentero Porcelana;;1000;;0,01;1;1;1;;1135207;;SI;NO;"Material: Porcelana. Medidas: 
+Alto 7 cm 
+Diametro Base 4.5cm
+Dimetro Superior 4 cm";;;;Schmidt;SI;;;;
+;Schmidt Salero Porcelana;;1000;;0,01;1;1;1;;1135206;;SI;NO;"Material: Porcelana. Medidas: 
+Alto 7 cm 
+Diametro Base 4.5cm
+Dimetro Superior 4 cm";;;;Schmidt;SI;;;;
+;Salero y Pimentero Ceramica;;1000;;0,01;1;1;1;;1270190;;SI;NO;"Material: Ceramica Altura: 6,5 Cm Diametro: 3,2 Cm
+";;;;;SI;;;;
+;Horno Combinado Ultra Rapido Silcook;;1000;;0,01;1;1;1;;1011102;;SI;NO;" Voltaje: 220
+- Potencia: 2990 wats
+- Potencia de conveccion: 2200w.
+- Potencia de microondas: 1000w.
+- Potencia de coccion: 1900 w.
+- Temperatura maxima: 280 º C
+- Medidas: 41 x 63 x 59 cm
+- Medidas de camara: 30,5 x 30,5 x 16,5
+- Capacidad: 15 lts
+- Pantalla tactil de 7 pulgadas
+- 1024 recetas editables.
+- Camara de coccion de acero inoxidable.
+- Ventilacion trasera y filtro frontal.
+- Puerta con sistema de seguridad.
+- Sistema de enfriamiento.
+- Control de velocidad del ventilador.
+- Modo de coccion manual y automatico.
+- Funcion pre calentamiento.
+- Programa de enfriamiento para limpieza.
+- Puerto USB para programas y recetas.
+- Conexion Wi Fi.
+- Peso: 52 kg
+- Colores disponibles: Rojo / Negro";;;;Silcook;NO;;;;
+;Vaso Tequila Tijuana;;1000;;0,01;1;1;1;;1278004;;SI;NO;Material: Vidrio Marca: Rigolleau Capacidad: 60 Ml Altura: 7 Cm Diametro Boca: 4,5 Cm;;;;Rigolleau;SI;;;;
+;Decantador 1,5 Lt;;1000;;0,01;1;1;1;;1278623;;SI;NO;Capacidad: 1,5 Lt Diametro boca: 8 Cm Diametro Base: 20,5 Cm Altura: 24 Cm Corte Diagonal;;;;;SI;;;;

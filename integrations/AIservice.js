@@ -1,3 +1,5 @@
+import waitingConfirmation from "../utils/waitingConfirmation.js";
+
 export const sendToAI = async (prompt, maxRetries = 5, delayMs = 30000) => {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     const res = await fetch(
@@ -6,7 +8,7 @@ export const sendToAI = async (prompt, maxRetries = 5, delayMs = 30000) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-goog-api-key": "AIzaSyD-ESfl-Mgvz6wHmaGNGh9LUq80mZU5GfM",
+          "X-goog-api-key": "AIzaSyColfAtbdmJbzQSz-domJTzNR8UwcHuaSE",
         },
         body: JSON.stringify({
           contents: [

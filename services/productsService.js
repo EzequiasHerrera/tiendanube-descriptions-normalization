@@ -90,7 +90,7 @@ const uploadProductsFromExcel = async () => {
     console.log(`\n📦 Preparando producto: ${product.nombre}`);
 
     const fileIds = (await driveFindImageBySKU(product.sku, true)) || [];
-    const descripcionAI = await generateDescriptionWithAI(product.descripcionRaw, product.variants?.[0]?.sku);
+    const descripcionAI = await generateDescriptionWithAI(product.descripcionRaw, product.sku);
 
     const fullProduct = {
       ...product,
